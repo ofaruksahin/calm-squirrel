@@ -11,10 +11,6 @@ builder.Services.RegisterServices();
 
 var app = builder.Build();
 
-using var scope = app.Services.CreateScope();
-var a = scope.ServiceProvider.GetService<IReservationAdapter>();
-var sessionResponseModel = await a.GetSession(new GetSessionRequestModel("165.114.41.21", "5117", "Chrome", "47.0.0.12"));
-
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

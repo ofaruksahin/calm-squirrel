@@ -6,7 +6,7 @@
         public string SessionId { get; private set; }
         public string DeviceId { get; private set; }
         public DateTime Date { get; private set; }
-        public string Language { get; private set; }
+        public string Language { get; private set; } = "tr-TR";
 
         public GetBusLocationsRequestModel()
         {
@@ -16,14 +16,12 @@
             string searchText,
             string sessionId,
             string deviceId,
-            DateTime date,
-            string language)
+            DateTime date)
         {
             SearchText = searchText;
             SessionId = sessionId;
             DeviceId = deviceId;
             Date = date;
-            Language = language;
         }
     }
 }

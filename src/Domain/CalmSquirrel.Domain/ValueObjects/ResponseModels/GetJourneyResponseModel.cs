@@ -9,12 +9,7 @@
         public string BusTypeName { get; set; }
         public int TotalSeats { get; set; }
         public int AvailableSeats { get; set; }
-        public List<JourneyItem> Journey { get; set; }
-
-        public GetJourneyResponseModel()
-        {
-            Journey = new List<JourneyItem>();
-        }
+        public JourneyItem Journey { get; set; }
     }
 
     public class JourneyItem
@@ -30,7 +25,7 @@
         public string Duration { get; set; }
         public double OriginalPrice { get; set; }
         public double InternetPrice { get; set; }
-        public double ProviderInternetPrice { get; set; }
+        public double? ProviderInternetPrice { get; set; }
         public double SortingPrice { get; set; }
         public List<string> Features { get; set; }
 
@@ -46,7 +41,7 @@
         public int Id { get; set; }
         public string Name { get; set; }
         public string Station { get; set; }
-        public DateTime Time { get; set; }
+        public string Time { get; set; }
         public bool IsOrigin { get; set; }
         public bool IsDestination { get; set; }
         public bool IsSegmentStop { get; set; }

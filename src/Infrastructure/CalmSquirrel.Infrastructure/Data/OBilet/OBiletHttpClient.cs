@@ -18,7 +18,6 @@ namespace CalmSquirrel.Infrastructure.Data.OBilet
     [Inject(ServiceLifetime.Scoped)]
     public class OBiletHttpClient : IReservationAdapter
     {
-        private ILogger<OBiletHttpClient> _logger;
         private readonly HttpClient _httpClient;
 
         public OBiletHttpClient(
@@ -39,14 +38,22 @@ namespace CalmSquirrel.Infrastructure.Data.OBilet
             return obiletResponseModel.ToDomainModel();
         }
 
-        public Task<BaseResponse<GetBusLocationsResponseModel>> GetBusLocations(GetBusLocationsRequestModel model)
+        public async Task<BaseResponse<List<GetBusLocationsResponseModel>>> GetBusLocations(GetBusLocationsRequestModel model)
         {
-            throw new NotImplementedException();
+            var httpResponse = await _httpClient.PostAsJsonAsync<OBiletGetBusLocationsRequestModel>("api/location/getbuslocations", model.ToRequestModel());
+            if (!httpResponse.IsSuccessStatusCode)
+                throw new OBiletInvalidResponseException();
+            var obiletResponseModel = await httpResponse.Content.ReadFromJsonAsync<BaseOBiletResponse<List<OBiletGetBusLocationsResponseModel>>>();
+            return obiletResponseModel.ToDomainModel();
         }
 
-        public Task<BaseResponse<GetJourneyResponseModel>> GetJourneys(GetJourneysRequestModel model)
+        public async Task<BaseResponse<List<GetJourneyResponseModel>>> GetJourneys(GetJourneysRequestModel model)
         {
-            throw new NotImplementedException();
+            var httpResponse = await _httpClient.PostAsJsonAsync<OBiletGetJourneysRequestModel>("api/journey/getbusjourneys", model.ToRequestModel());
+            if (!httpResponse.IsSuccessStatusCode)
+                throw new OBiletInvalidResponseException();
+            var obiletResponseModel = await httpResponse.Content.ReadFromJsonAsync<BaseOBiletResponse<List<OBiletGetJourneyResponseModel>>>();
+            return obiletResponseModel.ToDomainModel();
         }     
     }
 }
