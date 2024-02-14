@@ -1,6 +1,4 @@
 using CalmSquirrel.Application.Extensions;
-using CalmSquirrel.Domain.Contracts;
-using CalmSquirrel.Domain.ValueObjects.RequestModels;
 using CalmSquirrel.Infrastructure.IoC.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +6,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
 builder.Services.RegisterOptions(builder.Configuration);
 builder.Services.RegisterServices();
+builder.Services.AddMediatR(configure =>
+{
+    configure.RegisterServicesFromAssembly(typeof(IServiceCollectionExtensions).Assembly);
+});
 
 var app = builder.Build();
 

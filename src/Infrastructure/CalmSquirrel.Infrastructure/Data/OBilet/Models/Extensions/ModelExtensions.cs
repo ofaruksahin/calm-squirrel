@@ -121,7 +121,9 @@ namespace CalmSquirrel.Infrastructure.Data.OBilet.Models.Extensions
                         ProviderInternetPrice = item.Journey.ProviderInternetPrice,
                         SortingPrice = item.Journey.SortingPrice,
                         Features = item.Journey.Features
-                    }
+                    },
+                    OriginLocation = item.OriginLocation,
+                    DestinationLocation = item.DestinationLocation
                 }).ToList()
             };
         }

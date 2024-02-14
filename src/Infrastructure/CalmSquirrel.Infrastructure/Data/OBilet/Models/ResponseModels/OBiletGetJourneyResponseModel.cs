@@ -20,6 +20,10 @@ namespace CalmSquirrel.Infrastructure.Data.OBilet.Models.ResponseModels
         public int AvailableSeats { get; set; }
         [JsonPropertyName("journey")]
         public OBiletGetJourneyItemResponseModel Journey { get; set; }
+        [JsonPropertyName("origin-location")]
+        public string OriginLocation { get; set; }
+        [JsonPropertyName("destination-location")]
+        public string DestinationLocation { get; set; }
     }
 
     internal class OBiletGetJourneyItemResponseModel

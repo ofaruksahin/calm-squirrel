@@ -1,0 +1,137 @@
+﻿@using CalmSquirrel.Domain.ValueObjects.ResponseModels
+@using System.Globalization
+@model List<GetJourneyResponseModel>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        .container {
+            max-width: 320px;
+            margin: auto;
+            border: 1px solid #0000001a;
+        }
+
+        .header {
+            padding: 16px 8px;
+            color: #fff;
+            background: #2f4eb4;
+        }
+
+        .time-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .title {
+            font-size: 16px;
+        }
+
+        .desc {
+            font-size: 12px;
+        }
+
+        .card {
+            padding: 11px 9px;
+            border: 1px solid #b4b4b4;
+            border-radius: 3px;
+            margin: 8px;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 4px 9px;
+            font-size: 14px;
+            color: #fff;
+            border-radius: 5px;
+            background-color: #d23b38;
+            border: none;
+        }
+
+        .time {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .time-title {
+            color: #3640b1;
+            font-size: 9px;
+        }
+
+        .time-desc {
+            color: #192289;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="wrapper">
+
+                @{
+                    var firstItem = Model.FirstOrDefault();
+
+                    if (firstItem is null)
+                    {
+                        <span class="title">Sefer bulunamadı</span>
+                    }
+                    else
+                    {
+                        <span class="title">@firstItem.OriginLocation - @firstItem.DestinationLocation</span>
+                        <span class="desc">@firstItem.Journey.Departure.ToString("dd MMMM dddd",new CultureInfo("tr-TR"))</span>
+                    }
+                }
+            </div>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="card">
+                <div class="card-top">
+                    <div class="time-wrapper">
+                        <div class="time">
+                            <span class="time-title">KALKIŞ</span>
+                            <span class="time-desc">@item.Journey.Departure.ToString("hh:mm")</span>
+                        </div>
+                        <svg width="12"
+                             height="12"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12H19M19 12L13 18M19 12L13 6"
+                                  stroke="#000000"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round" />
+                        </svg>
+                        <div class="time">
+                            <span class="time-title">VARIŞ</span>
+                            <span class="time-desc">@item.Journey.Arrival.ToString("hh:mm")</span>
+                        </div>
+                    </div>
+
+                    <button>@item.Journey.OriginalPrice ₺</button>
+                </div>
+                <span class="desc">@item.Journey.Origin - @item.Journey.Destination</span>
+            </div>
+        }
+    </div>
+</body>
+</html>

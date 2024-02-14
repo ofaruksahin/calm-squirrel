@@ -1,8 +1,399 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" />
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+        }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        .container {
+            max-width: 320px;
+            margin: auto;
+            border: 1px solid #0000001a;
+        }
+
+        .header {
+            background-color: #2f4eb4;
+            height: 40px;
+        }
+
+        .card-inclusive {
+            background-color: #f8f8f8;
+            padding: 27px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            width: 100%;
+            background: #ffffff;
+            padding: 11px 8px;
+            margin-bottom: 3px;
+            border-radius: 2px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .direction {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #5d686e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: 10px;
+            top: 50px;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card:nth-of-type(3) {
+            margin-top: 20px;
+        }
+
+        .title {
+            font-size: 14px;
+            color: #2f4eb4;
+            margin-left: 27px;
+        }
+
+        .desc {
+            font-size: 15px;
+            color: #5d686e;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .days {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .submit {
+            width: 100%;
+            padding: 10px;
+            margin-top: 18px;
+            max-width: 208px;
+            background-color: #2f4eb4;
+            border: none;
+            border-radius: 4px;
+            font-size: 17px;
+            color: #fff;
+        }
+
+        .footer {
+            padding: 20px;
+        }
+
+        .description {
+            font-size: 12px;
+            color: #5d686e;
+        }
+
+        .button {
+            border: 1px solid #5d686e;
+            border-radius: 2px;
+            color: #5d686e;
+            font-size: 12px;
+            padding: 5px 10px;
+            background: #ffffff;
+        }
+
+            .button:hover {
+                color: #fff;
+                background: #5d686e;
+            }
+
+        input {
+            border: 1px solid #fff;
+            background-color: rgba(255,255,255,.5);
+            padding: 5px;
+            width: 100%;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <div class="card-inclusive">
+            <div class="card">
+                <div class="info">
+                    <span class="title">Nereden</span>
+                    <div class="location">
+                        <svg width="15"
+                             height="15"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C7.31117 0 3.375 3.93617 3.375 8.625C3.375 13.314 10.08 23.9998 11.9999 24C13.9199 23.9998 20.6249 13.314 20.6249 8.625C20.6249 3.93617 16.6887 0 12 0ZM12 12C9.2395 12 7.125 9.8855 7.125 7.125C7.125 4.3645 9.2395 2.25 12 2.25C14.7605 2.25 16.875 4.3645 16.875 7.125C16.875 9.8855 14.7605 12 12 12Z"
+                                  fill="#9D9D9C" />
+                        </svg>
+                        <input list="origins" name="origins" class="desc">
+                        <datalist id="origins">
+                        </datalist>
+                    </div>
+                </div>
+                <div class="direction" id="reverseButton">
+                    <svg width="15"
+                         height="15"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 19L18 13H15V5H9V13H6L12 19Z" fill="#000000" />
+                    </svg>
+                    <svg width="15"
+                         height="15"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 5L6 11H9V19H15V11H18L12 5Z" fill="#000000" />
+                    </svg>
+                </div>
+            </div>
+            <div class="card">
+                <div class="info">
+                    <span class="title">Nereye</span>
+                    <div class="location">
+                        <svg width="15"
+                             height="15"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 0C7.31117 0 3.375 3.93617 3.375 8.625C3.375 13.314 10.08 23.9998 11.9999 24C13.9199 23.9998 20.6249 13.314 20.6249 8.625C20.6249 3.93617 16.6887 0 12 0ZM12 12C9.2395 12 7.125 9.8855 7.125 7.125C7.125 4.3645 9.2395 2.25 12 2.25C14.7605 2.25 16.875 4.3645 16.875 7.125C16.875 9.8855 14.7605 12 12 12Z"
+                                  fill="#9D9D9C" />
+                        </svg>
+                        <input list="destinations" name="destinations" class="desc">
+                        <datalist id="destinations">
+                        </datalist>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="info">
+                    <span class="title">Tarih</span>
+                    <div class="location">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="16"
+                             height="16"
+                             fill="currentColor"
+                             class="bi bi-calendar2-date"
+                             viewBox="0 0 16 16">
+                            <path d="M6.445 12.688V7.354h-.633A13 13 0 0 0 4.5 8.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23" />
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M2 2a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z" />
+                            <path d="M2.5 4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5z" />
+                        </svg>
+                        <input type="date" name="departure-date" desc />
+                    </div>
+                </div>
+
+                <div class="days">
+                    <button class="button" id="now-button">Bugün</button>
+                    <button class="button" id="tomorrow-button">Yarın</button>
+                </div>
+            </div>
+
+            <button class="submit" id="submitButton">Bileti Bul</button>
+        </div>
+        <div class="footer">
+            <span class="description">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+                volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+                ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+                molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+            </span>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            var originInput = $('input[name=origins]');
+            var departureDateInput = $('input[name=departure-date]')
+            var originsList = $('#origins');
+            var destinationInput = $("input[name=destinations]")
+            var destinationList = $('#destinations')
+
+            var originsData = []
+            var destinationsData = []
+            var originId = 0;
+            var destinationId = 0;
+
+            function getBusLocations(el, callback = null) {
+
+                var term = $(el).val()
+
+                if (term.length < 3) return;
+
+                var requestModel = {
+                    SearchText: term,
+                    Date: $(departureDateInput).val()
+                }
+
+                $.ajax({
+                    url: "/OBilet/GetBusLocations",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(requestModel),
+                    success: function (data) {
+                        if (data.isSuccess) {
+                            callback(data.data);
+                        }
+                    }
+                });
+            }
+
+            $(originInput).keypress(function () {
+                getBusLocations(originInput, addOrigins);
+            })
+
+            $(originInput).change(function () {
+                var term = $(this).val();
+
+                var filterItem = originsData.filter(origin => origin.longName == term);
+
+                if (filterItem.length > 0) {
+                    originId = filterItem[0].id;
+                    console.log(originId)
+                }
+            })
+
+            $(destinationInput).keypress(function () {
+                getBusLocations(destinationInput, addDestinations);
+            })
+
+
+            $(destinationInput).change(function () {
+                var term = $(this).val();
+
+                var filterItem = destinationsData.filter(destination => destination.longName == term);
+
+                if (filterItem.length > 0) {
+                    destinationId = filterItem[0].id;
+                    console.log(destinationId)
+                }
+            })
+
+
+            $('#now-button').click(function () {
+                $(departureDateInput).val(getDateText(new Date()))
+            })
+
+            $('#tomorrow-button').click(function () {
+                $(departureDateInput).val(getDateText(addDays(new Date(), 1)))
+            })
+
+            function checkDate(startDate, endDate) {
+                const startYear = startDate.getFullYear();
+                const startMonth = startDate.getMonth();
+                const startDay = startDate.getDate();
+
+                const endYear = endDate.getFullYear();
+                const endMonth = endDate.getMonth();
+                const endDay = endDate.getDate();
+
+                if (startYear < endYear) {
+                    return true;
+                } else if (startYear === endYear) {
+                    if (startMonth < endMonth) {
+                        return true;
+                    } else if (startMonth === endMonth) {
+                        if (startDay >= endDay) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            $('#submitButton').click(function () {
+                var date = new Date($(departureDateInput).val())
+                var endDate = new Date();
+
+                if (checkDate(date, endDate) && originId > 0 && destinationId > 0) {
+                    var dateText = getDateText(date);
+                    var url = `${window.location.origin}/Home/GetJourneys?origin-id=${originId}&destination-id=${destinationId}&departure-date=${dateText}`;
+                    window.location.href = url
+                }else{
+                    alert('Form hatalı')
+                }
+            })
+
+            $('#reverseButton').click(function () {
+                alert('kodlanmadı')
+            })
+
+            function getDateText(date) {
+                var day = ("0" + date.getDate()).slice(-2);
+                var month = ("0" + (date.getMonth() + 1)).slice(-2);
+
+                var today = date.getFullYear() + "-" + (month) + "-" + (day);
+                return today;
+            }
+
+            function addDays(date, days) {
+                var result = new Date(date);
+                result.setDate(result.getDate() + days);
+                return result;
+            }
+
+            function addOrigins(data) {
+                originsData = data;
+                $(originsList).empty();
+
+                originsData.forEach(function (val, index) {
+                    $('<option/>')
+                        .attr('id', val.id)
+                        .attr('value', val.longName)
+                        .appendTo($(originsList))
+
+                })
+            }
+
+            function addDestinations(data) {
+                destinationsData = data;
+                $(destinationList).empty();
+
+                destinationsData.forEach(function (val, index) {
+                    $('<option/>')
+                        .attr('id', val.id)
+                        .attr('value', val.longName)
+                        .appendTo($(destinationList))
+
+                })
+            }
+
+            $(departureDateInput).val(getDateText(new Date()))
+            getBusLocations(originInput, addOrigins);
+        })
+    </script>
+
+</body>
+</html>

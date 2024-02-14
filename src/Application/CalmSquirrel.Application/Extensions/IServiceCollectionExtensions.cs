@@ -1,12 +1,10 @@
-﻿using CalmSquirrel.Domain.Attributes;
-using CalmSquirrel.Domain.Contracts;
+﻿using CalmSquirrel.Domain.Contracts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace CalmSquirrel.Application.Extensions
 {
-    public static class IServiceCollections
+    public static class IServiceCollectionExtensions
     {
         public static IServiceCollection RegisterOptions(this IServiceCollection @this, IConfiguration configuration)
         {

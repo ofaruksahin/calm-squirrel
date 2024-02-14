@@ -10,6 +10,8 @@
         public int TotalSeats { get; set; }
         public int AvailableSeats { get; set; }
         public JourneyItem Journey { get; set; }
+        public string OriginLocation { get; set; }
+        public string DestinationLocation { get; set; }
     }
 
     public class JourneyItem
