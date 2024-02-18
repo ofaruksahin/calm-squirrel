@@ -270,34 +270,35 @@
                 });
             }
 
-            $(originInput).keypress(function () {
+            $(originInput).keyup(function () {
                 getBusLocations(originInput, addOrigins);
-            })
 
-            $(originInput).change(function () {
                 var term = $(this).val();
+                term = capitalizeFirstLetter(term);
+                $(this).val(term)
 
-                var filterItem = originsData.filter(origin => origin.longName == term);
+                var filterItem = originsData.filter(origin => origin.longName.includes(term));
 
                 if (filterItem.length > 0) {
                     originId = filterItem[0].id;
-                    console.log(originId)
+                    originsData = filterItem;
+                    addOrigins(originsData)
                 }
             })
 
-            $(destinationInput).keypress(function () {
+            $(destinationInput).keyup(function () {
                 getBusLocations(destinationInput, addDestinations);
-            })
 
-
-            $(destinationInput).change(function () {
                 var term = $(this).val();
+                term = capitalizeFirstLetter(term);
+                $(this).val(term)
 
-                var filterItem = destinationsData.filter(destination => destination.longName == term);
+                var filterItem = destinationsData.filter(destination => destination.longName.includes(term));
 
                 if (filterItem.length > 0) {
                     destinationId = filterItem[0].id;
-                    console.log(destinationId)
+                    destinationsData = filterItem;
+                    addDestinations(destinationsData)
                 }
             })
 
@@ -347,7 +348,21 @@
             })
 
             $('#reverseButton').click(function () {
-                alert('kodlanmadı')
+                var oldOriginId = originId;
+                var oldOriginName = $(originInput).val();
+                var oldDestinationName = $(destinationInput).val();
+                var oldOrigins = originsData;
+
+                originId = destinationId;
+                destinationId = oldOriginId;
+                $(originInput).val(oldDestinationName);
+                $(destinationInput).val(oldOriginName);
+
+                originsData = destinationsData;
+                destinationsData = oldOrigins;
+
+                addOrigins(originsData);
+                addDestinations(destinationsData);
             })
 
             function getDateText(date) {
@@ -388,6 +403,10 @@
                         .appendTo($(destinationList))
 
                 })
+            }
+
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toLocaleUpperCase("tr-TR") + string.slice(1);
             }
 
             $(departureDateInput).val(getDateText(new Date()))
